@@ -1202,17 +1202,6 @@ void rebuild_sched_domains(void)
 }
 EXPORT_SYMBOL_GPL(rebuild_sched_domains);
 
-static int update_cpus_allowed(struct cpuset *cs, struct task_struct *p,
-				const struct cpumask *new_mask)
-{
-	int ret = -EINVAL;
-
-	trace_android_rvh_update_cpus_allowed(p, cs->cpus_requested, new_mask, &ret);
-	if (!ret)
-		return ret;
-
-	return set_cpus_allowed_ptr(p, new_mask);
-}
 
 /**
  * update_tasks_cpumask - Update the cpumasks of tasks in the cpuset.
