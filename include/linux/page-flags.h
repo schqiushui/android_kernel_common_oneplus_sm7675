@@ -138,6 +138,12 @@ enum pageflags {
 #ifdef CONFIG_KASAN_HW_TAGS
 	PG_skip_kasan_poison,
 #endif
+#ifdef CONFIG_64BIT
+	PG_oem_reserved_1,
+	PG_oem_reserved_2,
+	PG_oem_reserved_3,
+	PG_oem_reserved_4,
+#endif
 #ifdef CONFIG_BLOCKIO_UX_OPT
 	PG_protect,
 #endif

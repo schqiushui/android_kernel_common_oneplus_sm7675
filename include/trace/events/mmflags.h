@@ -104,6 +104,12 @@
 #define IF_HAVE_PG_SKIP_KASAN_POISON(flag,string)
 #endif
 
+#ifdef CONFIG_64BIT
+#define IF_HAVE_PG_OEM_RESERVED(_name) ,{1UL << PG_##_name, __stringify(_name)}
+#else
+#define IF_HAVE_PG_OEM_RESERVED(_name)
+#endif
+
 #ifdef CONFIG_BLOCKIO_UX_OPT
 #define IF_HAVE_PG_PROTECTED(flag,string) ,{1UL << flag, string}
 #else
@@ -138,6 +144,10 @@ IF_HAVE_PG_HWPOISON(PG_hwpoison,	"hwpoison"	)		\
 IF_HAVE_PG_IDLE(PG_young,		"young"		)		\
 IF_HAVE_PG_IDLE(PG_idle,		"idle"		)		\
 IF_HAVE_PG_ARCH_2(PG_arch_2,		"arch_2"	)		\
+IF_HAVE_PG_OEM_RESERVED(oem_reserved_1)					\
+IF_HAVE_PG_OEM_RESERVED(oem_reserved_2)					\
+IF_HAVE_PG_OEM_RESERVED(oem_reserved_3)					\
+IF_HAVE_PG_OEM_RESERVED(oem_reserved_4)					\
 IF_HAVE_PG_SKIP_KASAN_POISON(PG_skip_kasan_poison, "skip_kasan_poison") \
 IF_HAVE_PG_PROTECTED(PG_protect, "protect")
 
